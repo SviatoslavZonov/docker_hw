@@ -1,9 +1,12 @@
-FROM ubuntu:22.04
+# Используем образ Nginx как базовый
 FROM nginx
 RUN apt update
-RUN echo Y | apt upgrade
-#RUN echo Y | apt install nginx
-#RUN echo Y | apt install systemctl
-COPY index.html /usr/share/nginx/html/
+
+# Копируем наш index.html в стандартную директорию Nginx
+COPY index.html /usr/share/nginx/html/index.html
+
+# Открываем порт 80
+EXPOSE 80
+
+# Команда для запуска Nginx
 CMD ["nginx", "-g", "daemon off;"]
-#CMD ["nginx"]
